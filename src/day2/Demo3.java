@@ -3,28 +3,41 @@ package day2;
 
 interface Atm
 {
-	abstract void with();
 	abstract void depo();
 }
-
-
-public class Demo3 implements Atm {
-	
+interface Atm1
+{
+	abstract void min();
+}
+/*
+abstract class Abc implements Atm, Atm1
+{
 	public void depo()
 	{
-		System.out.println("With");
+		System.out.println("depo");
+	}
+	public void min() {
+		System.out.println("min");
+	}
+}
+*/
+
+public class Demo3 implements Atm , Atm1
+{
+	public void depo() {
+		System.out.println("dep");
 	}
 	
-	public void with()
+	public void min()
 	{
-		System.out.println("Depo");
+		System.out.println("with");
 	}
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) 
+	{
 		Demo3 v = new Demo3();
 		v.depo();
-		v.with();
+		v.min();
 		
 	}
 }
