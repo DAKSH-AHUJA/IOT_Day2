@@ -27,23 +27,53 @@ public class ProjectLoop {
 
             switch (choice) {
                 case 1:
-                    // 1)enter the name
-                    System.out.print("Enter name: ");
-                    name = sc.nextLine();
+                    // 1) enter the name (1 word or 2 words with exactly one space)
+                    while (true) {
+                        System.out.print("Enter name: ");
+                        String inputName = sc.nextLine().trim();
 
-                    // 2)enter the age
-                    System.out.print("Enter age: ");
-                    age = sc.nextInt();
-                    sc.nextLine();
+                        // Must be either 1 word OR exactly 2 words separated by exactly one space
+                        // And words should be alphabetic (you can relax this if needed).
+                        if (inputName.matches("[A-Za-z]+") || inputName.matches("[A-Za-z]+ [A-Za-z]+")) {
+                            name = inputName;
+                            break;
+                        } else {
+                            System.out.println("Invalid name! Enter 1 word OR 2 words with exactly one space.");
+                        }
+                    }
 
-                    // 3)enter the designation (PMT)
-                    System.out.print("Enter designation (e.g., PMT): ");
-                    designation = sc.nextLine();
+                    // 2) enter the age (only 18 to 60)
+                    while (true) {
+                        System.out.print("Enter age: ");
+                        int inputAge = sc.nextInt();
+                        sc.nextLine(); // consume newline
+
+                        if (inputAge >= 18 && inputAge <= 60) {
+                            age = inputAge;
+                            break;
+                        } else {
+                            System.out.println("Invalid age! Age must be between 18 and 60.");
+                        }
+                    }
+
+                    // 3) enter the designation (programmer, manager, trainer only)
+                    while (true) {
+                        System.out.print("Enter designation (programmer/manager/trainer): ");
+                        String inputDesignation = sc.nextLine().trim();
+
+                        String lower = inputDesignation.toLowerCase();
+                        if (lower.equals("programmer") || lower.equals("manager") || lower.equals("trainer")) {
+                            designation = lower; // store normalized value
+                            break;
+                        } else {
+                            System.out.println("Invalid designation! Only programmer, manager, or trainer are allowed.");
+                        }
+                    }
 
                     // Optional: initial salary (needed for Raise Sal)
                     System.out.print("Enter current salary: ");
                     salary = sc.nextDouble();
-                    sc.nextLine();
+                    sc.nextLine(); // consume newline
 
                     System.out.println("Employee created successfully!");
                     break;
@@ -57,8 +87,7 @@ public class ProjectLoop {
                         System.out.println("Name: " + name);
                         System.out.println("Age: " + age);
                         System.out.println("Designation: " + designation);
-                        System.out.println("Salary: " + salary);
-                    }
+                        }
                     break;
 
                 case 3:
@@ -68,7 +97,7 @@ public class ProjectLoop {
                     } else {
                         System.out.print("Enter raise amount (e.g., 5000): ");
                         double raise = sc.nextDouble();
-                        sc.nextLine();
+                        sc.nextLine(); // consume newline
                         salary += raise;
                         System.out.println("Salary raised successfully! New salary = " + salary);
                     }

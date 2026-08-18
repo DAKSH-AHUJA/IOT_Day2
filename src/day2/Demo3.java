@@ -9,6 +9,7 @@ interface Atm1
 {
 	abstract void min();
 }
+//This is the abstract class example
 /*
 abstract class Abc implements Atm, Atm1
 {
